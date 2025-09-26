@@ -49,7 +49,7 @@ if [ "$(uname -m)" = "armv7l" ]; then
   echo "WARNING:"
   echo "The Moon Blockchain requires a 64 bit OS and this is 32 bit armv7l"
   echo "For more information, see"
-  echo "https://github.com/MOONCOINTEAM/moon-blockchain/wiki/Raspberry-Pi"
+  echo "https://github.com/comamny/moon-blockchain/wiki/Raspberry-Pi"
   echo "Exiting."
   exit 1
 fi
@@ -303,7 +303,7 @@ echo "For assistance join us on Keybase in the #support chat channel:"
 echo "https://keybase.io/team/moon_network.public"
 echo ""
 echo "Try the Quick Start Guide to running moon-blockchain:"
-echo "https://github.com/MOONCOINTEAM/moon-blockchain/wiki/Quick-Start-Guide"
+echo "https://github.com/comamny/moon-blockchain/wiki/Quick-Start-Guide"
 echo ""
 echo "To install the GUI type 'sh install-gui.sh' after '. ./activate'."
 echo ""
