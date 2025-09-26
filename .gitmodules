@@ -1,5 +1,5 @@
 [submodule "moon-blockchain-gui"]
-	path = moon-blockchain-gui
+	path = moon-blockchain-guii
 	url = https://github.com/comamny/moon-blockchain-gui.git
 	branch = main
 [submodule "mozilla-ca"]
