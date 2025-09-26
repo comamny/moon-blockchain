@@ -148,8 +148,8 @@ kwargs = dict(
     long_description_content_type="text/markdown",
     zip_safe=False,
     project_urls={
-        "Source": "https://github.com/MOONCOINTEAM/moon-blockchain/",
-        "Changelog": "https://github.com/MOONCOINTEAM/moon-blockchain/blob/main/CHANGELOG.md",
+        "Source": "https://github.com/comamny/moon-blockchain/",
+        "Changelog": "https://github.com/comamny/moon-blockchain/blob/main/CHANGELOG.md",
     },
 )
 
