@@ -176,33 +176,35 @@ echo ""
 # Pipelines directly, so skip unless you are completing a source/developer install.
 # Ubuntu special cases above.
 if [ ! "$CI" ]; then
-  echo "Running git submodule update --init --recursive."
+  echo "Skipping git submodule update as cloning is disabled."
   echo ""
-  git submodule update --init --recursive
-  echo "Running git submodule update."
-  echo ""
-  git submodule update
-  cd moon-blockchain-gui
+  
+  if [ -d "moon-blockchain-gui" ]; then
+    cd moon-blockchain-gui
 
-  if [ "$SUBMODULE_BRANCH" ];
-  then
-    git fetch --all
-    git reset --hard "$SUBMODULE_BRANCH"
-    echo ""
-    echo "Building the GUI with branch $SUBMODULE_BRANCH"
-    echo ""
+    if [ "$SUBMODULE_BRANCH" ];
+    then
+      git fetch --all
+      git reset --hard "$SUBMODULE_BRANCH"
+      echo ""
+      echo "Building the GUI with branch $SUBMODULE_BRANCH"
+      echo ""
+    fi
+
+    # Work around for inconsistent `npm` exec path issue
+    # https://github.com/comamny/moon-blockchain-gui/pull/10460#issuecomment-1054492495
+    patch_inconsistent_npm_issue "../node_modules"
+
+    npm ci
+    npm audit fix || true
+    npm run build
+
+    # Set modified output of `moon version` to version property of GUI's package.json
+    python ../installhelper.py
+  else
+    echo "Error: moon-blockchain-gui directory not found. Please clone the repository manually."
+    exit 1
   fi
-
-  # Work around for inconsistent `npm` exec path issue
-  # https://github.com/comamny/moon-blockchain-gui/pull/10460#issuecomment-1054492495
-  patch_inconsistent_npm_issue "../node_modules"
-
-  npm ci
-  npm audit fix || true
-  npm run build
-
-  # Set modified output of `moon version` to version property of GUI's package.json
-  python ../installhelper.py
 else
   echo "Skipping node.js in install.sh on MacOS ci."
 fi
